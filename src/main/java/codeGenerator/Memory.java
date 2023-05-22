@@ -14,20 +14,38 @@ public class Memory {
     private final int dataSize = 4;
     private final int tempSize = 4;
 
+    public void setLastTempIndex(int tempIndex) {
+        lastTempIndex = tempIndex;
+    }
+    
+    public int getLastTempIndex(){
+        return lastTempIndex;
+    }
+    
+    public void setlastDataAddress(int dataAddress) {
+        lastDataAddress = dataAddress;
+    }
+
+    public int getlastDataAddress(){
+        return lastDataAddress;
+    }
+
     public Memory() {
         codeBlock = new ArrayList<_3AddressCode>();
-        lastTempIndex = stratTempMemoryAddress;
-        lastDataAddress = stratDataMemoryAddress;
+        setLastTempIndex(stratTempMemoryAddress);
+        setlastDataAddress(stratDataMemoryAddress);
     }
 
     public int getTemp() {
-        lastTempIndex += tempSize;
-        return lastTempIndex - tempSize;
+        int tempIndex = getLastTempIndex();
+        setLastTempIndex(tempIndex + tempSize);
+        return tempIndex;
     }
 
     public int getDateAddress() {
-        lastDataAddress += dataSize;
-        return lastDataAddress - dataSize;
+        int dateAddress = getLastDateAddress();
+        setlastDataAddress(dataAddress + dataSize);
+        return dataAddress;
     }
 
     public int saveMemory() {
